@@ -1,14 +1,16 @@
 # SAMA
 
-This repository contains the code and datasets needed to reproduce the SAMA experiments for exact kernel density visualization (KDV).
+SAMA is a support-aware moment aggregation method for exact kernel density visualization (KDV). It changes the computation unit from isolated pixels to on-demand raster tiles, certifies empty and full-cover node-tile interactions, evaluates full-cover regions by moment aggregation, and leaves only unresolved boundary interactions for direct evaluation.
+
+This repository contains the code and datasets needed to reproduce the SAMA experiments.
 
 ## Repository Layout
 
 - `cpp/sama/`: SAMA implementation.
-- `cpp/baselines/exact/`: exact baseline source adapted from the SLAM SIGMOD 2022 artifact, including SCAN, RQS, and SLAM variants.
+- `cpp/baselines/exact/`: exact baseline methods, including SCAN, RQS-kd, RQS-ball, and SLAM variants.
 - `cpp/baselines/approximate/`: Z-order coreset approximate baseline source used by the experiments.
-- `experiments/`: experiment scripts only. Generated results are intentionally ignored.
-- `datasets/`: four standardized small datasets used by the paper experiments.
+- `experiments/`: experiment scripts.
+- `datasets/`: four standardized real-world geospatial datasets used by the paper experiments.
 - `datasets/osm/`: scripts and instructions for downloading and processing the OSM datasets. Processed OSM point files are not included because they are too large for GitHub.
 
 ## Build
@@ -27,9 +29,9 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1 `
   -Cxx "C:\path\to\g++.exe"
 ```
 
-The script builds SAMA, exact baselines, and Z-order executables in their source directories. These generated binaries are ignored by Git.
+The script builds SAMA, exact baselines, and Z-order executables in their source directories.
 
-## Small Dataset Experiment Example
+## Experiment Example
 
 ```powershell
 Set-Location -LiteralPath <repo-root>
@@ -46,8 +48,6 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -File .\experiments\run_kdv_experi
   -TimeoutSeconds 600 `
   -NoZOrder
 ```
-
-Generated results are written under `experiments/results/` and are not tracked.
 
 ## OSM Datasets
 
