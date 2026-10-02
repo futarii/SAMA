@@ -1,6 +1,6 @@
 # Experiment Scripts
 
-This directory contains scripts for running experiments. It does not contain generated figures or results.
+This directory contains scripts for running experiments.
 
 ## Main Runner
 

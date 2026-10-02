@@ -11,7 +11,7 @@ This repository contains the code and datasets needed to reproduce the SAMA expe
 - `cpp/baselines/approximate/`: Z-order coreset approximate baseline source used by the experiments.
 - `experiments/`: experiment scripts.
 - `datasets/`: four standardized real-world geospatial datasets used by the paper experiments.
-- `datasets/osm/`: scripts and instructions for downloading and processing the OSM datasets. Processed OSM point files are not included because they are too large for GitHub.
+- `datasets/osm/`: scripts and instructions for reproducing the OSM datasets from public Geofabrik extracts.
 
 ## Build
 
