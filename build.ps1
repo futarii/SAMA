@@ -58,11 +58,20 @@ function Invoke-Build {
 }
 
 $SamaDir = Join-Path $BuildRoot "cpp\sama"
-Invoke-Build "SAMA batch executable" @(
+$SamaSources = @(
+    "dataset_io.cpp",
+    "geometry.cpp",
+    "kernel.cpp",
+    "kd_tree.cpp",
+    "sama_solver.cpp",
+    "output_io.cpp",
+    "commands.cpp",
+    "main.cpp"
+) | ForEach-Object { Join-Path $SamaDir $_ }
+Invoke-Build "SAMA batch executable" (@(
     "-O3", "-std=c++17",
-    (Join-Path $SamaDir "main.cpp"),
     "-o", (Join-Path $SamaDir "kdv_experiment.exe")
-)
+) + $SamaSources)
 
 $SlamSources = @(
     "init_visual.cpp",
@@ -86,8 +95,8 @@ if (-not $SkipZOrder) {
     New-Item -ItemType Directory -Force -Path $BinDir | Out-Null
     Invoke-Build "Z-order executable" @(
         "-O3",
-        (Join-Path $ZDir "sources\mtimer.cpp"),
-        (Join-Path $ZDir "sources\KDEZKern.cpp"),
+        (Join-Path $ZDir "mtimer.cpp"),
+        (Join-Path $ZDir "KDEZKern.cpp"),
         "-o", (Join-Path $BinDir "KDEZKern.exe")
     )
 }
